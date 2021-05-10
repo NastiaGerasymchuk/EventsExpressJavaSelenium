@@ -1,7 +1,7 @@
 package eventExpress.pages;
 
 import eventExpress.configure.BrawserConfigure;
-import eventExpress.selectorData.LeftNavSelector;
+import eventExpress.enums.Gender;
 import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
@@ -12,7 +12,10 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.List;
 
 public class BasePage {
     protected WebDriver driver;
@@ -66,6 +69,7 @@ public class BasePage {
         }
 
     }
+
     protected String getPlaceholder(WebElement webElement){
         String attribute="placeholder";
         return getAttribute(webElement,attribute);
@@ -82,18 +86,23 @@ public class BasePage {
     protected boolean isEqualElements(String elem1,String elem2){
         return elem1.equalsIgnoreCase(elem2);
     }
+    protected boolean isEnumElements(String gender){
+      Gender res=  Arrays.stream(Gender.values())
+                .filter(e -> e.name().equalsIgnoreCase(gender)).findAny().orElse(null);
+      return res != null;
+    }
+    protected Gender getEnumElements(String gender){
+        Gender res=  Arrays.stream(Gender.values())
+                .filter(e -> e.name().equalsIgnoreCase(gender)).findAny().orElse(null);
+        return res;
+    }
     private static String
     removeNonAlphanumeric(String str)
     {
-        // replace the given string
-        // with empty string
-        // except the pattern "[^a-zA-Z0-9]"
         str = str.replace(
                 "0", "")
                 .replace(
                 "\\\\n", "");
-
-        // return string
         return str;
     }
 

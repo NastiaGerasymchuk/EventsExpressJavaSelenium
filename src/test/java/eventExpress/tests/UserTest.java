@@ -5,6 +5,7 @@ import eventExpress.data.UserData;
 import eventExpress.models.User;
 import eventExpress.pages.HomePage;
 import eventExpress.pages.LoginForm;
+import eventExpress.pages.PersonalInfo;
 import eventExpress.pages.UserPage;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -20,7 +21,7 @@ public class UserTest extends BaseTest{
     private static Stream<Arguments> loginTextData() {
 
         return Stream.of(
-                Arguments.of(new User(UserData.EMAIL,UserData.PASSWORD,UserData.NAME), NavData.getUserNavItems())
+                Arguments.of(new User(UserData.EMAIL,UserData.PASSWORD,UserData.NAME,UserData.GENDER,UserData.BIRTHDAY,UserData.CATEGORIES,UserData.MANAGE_NOTIFICATIONS), NavData.getUserNavItems())
         );
 
 
@@ -28,17 +29,24 @@ public class UserTest extends BaseTest{
 
     @ParameterizedTest
     @MethodSource("loginTextData")
-
-    public void GoToUserProfile(User user,List<String> navItems){
+    public void goToUserProfile(User user,List<String> navItems){
         HomePage homePage=new HomePage(driver);
         LoginForm loginForm=homePage.signInClick();
-        String email=user.getEmail();
-        String password=user.getPassword();
         String userName=user.getName();
-        UserPage userPage=loginForm.login(email,password);
+        UserPage userPage=loginForm.login(user);
         assertThat(userPage.isHeaderProfileExist(),is(true));
         assertThat(userPage.isCurrentUserName(userName),is(true));
         assertThat(userPage.isCurrentNav(navItems),is(true));
-        //PersonalInfo personalInfo=userPage.goToPersonalInfo();
+    }
+    @ParameterizedTest
+    @MethodSource("loginTextData")
+    public void getUserInfo(User user){
+        HomePage homePage=new HomePage(driver);
+        LoginForm loginForm=homePage.signInClick();
+        UserPage userPage=loginForm.login(user);
+        PersonalInfo personalInfo=userPage.goToPersonalInfo();
+        assertThat(personalInfo.isVisibleInfo(),is(true));
+        assertThat(personalInfo.isEnabledButtonsInfo(),is(true));
+        assertThat(personalInfo.isCurrentUser(user),is(true));
     }
 }

@@ -1,5 +1,6 @@
 package eventExpress.pages;
 
+import eventExpress.models.User;
 import eventExpress.selectorData.LoginSelector;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -153,7 +154,9 @@ public class LoginForm extends BasePage{
                 isEnabledCancelButton();
 
     }
-    public UserPage login(String email,String password){
+    public UserPage login(User user){
+        String email=user.getEmail();
+        String password=user.getPassword();
         sendKeys(emailInput,email);
         sendKeys(passwordInput,password);
         click(signInButton);
