@@ -1,19 +1,13 @@
 package eventExpress.pages;
 
 import eventExpress.selectorData.LeftNavSelector;
+import eventExpress.testData.NavTitle;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Locale;
-
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.is;
 
 public class LeftNav extends BasePage{
     @FindBy(css = LeftNavSelector.LIST_ITEMS)
@@ -54,7 +48,7 @@ public class LeftNav extends BasePage{
         return isEqualElements(button,current);
     }
     public boolean isSignInButton() {
-        String button = LeftNavSelector.SIGN_IN_BUTTON_TEXT;
+        String button = NavTitle.SIGN_IN_BUTTON_TEXT;
         String current = getSignInButtonText();
         return isCurrentButton(button, current);
     }

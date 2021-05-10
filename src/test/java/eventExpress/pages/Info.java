@@ -1,6 +1,7 @@
 package eventExpress.pages;
 
 import eventExpress.enums.Gender;
+import eventExpress.models.PersonalInfoTextTitle;
 import eventExpress.models.User;
 import eventExpress.selectorData.InfoSelector;
 import org.openqa.selenium.By;
@@ -24,6 +25,12 @@ public class Info extends BasePage{
     WebElement userName;
     @FindBy(xpath = InfoSelector.USER_NAME_BUTTON)
     WebElement userNameButton;
+    @FindBy(xpath = InfoSelector.INPUT_USER_NAME)
+    WebElement userNameInput;
+    @FindBy(xpath = InfoSelector.SUBMIT_USER_NAME)
+    WebElement userNameSubmit;
+    @FindBy(xpath = InfoSelector.CLEAR_USER_NAME)
+    WebElement userNameClear;
     @FindBy(xpath = InfoSelector.GENDER_TEXT)
     WebElement genderText;
     @FindBy(xpath = InfoSelector.GENDER_NAME)
@@ -88,6 +95,13 @@ public class Info extends BasePage{
     public boolean isEnabledUserNameButton(){
         By item=By.xpath(InfoSelector.USER_NAME_BUTTON);
         return isEnabled(item);
+    }
+    public Info clickUserNameButton(){
+        click(userNameButton);
+        return this;
+    }
+    public boolean isCurrentName(String name){
+        return getUserName().equals(name);
     }
     public String getGenderText(){
         return getText(genderText);
@@ -227,5 +241,34 @@ public class Info extends BasePage{
                 isEqualElements(user.getBirthday(),getDateOfBirthName())&&
                equalsIgnoreCase(user.getCategories(),getCategories())&&
                equalsIgnoreCase(user.getManageNotifications(),getManageNotifications());
+    }
+    public boolean isCurrentTitles(PersonalInfoTextTitle personalInfoTextTitle){
+            String avatar=getChangeAvatarText();
+            String userName=getUserNameText();
+            String gender=getGenderText();
+            String dateOfBirth=getDateOfBirthText();
+            String favouriteCategories=getFavouriteCategoriesText();
+            String manageNotification=getManageNotificationText();
+            String linkedAccounts=getLinkedAccountsText();
+            PersonalInfoTextTitle existedTitles=new PersonalInfoTextTitle(
+                    avatar,userName,gender,dateOfBirth,favouriteCategories,manageNotification,linkedAccounts
+            );
+            return personalInfoTextTitle.equals(existedTitles);
+    }
+
+    private void inputUserName(String name){
+        sendKeys(userNameInput,name);
+    }
+    private void submitUserName(){
+        click(userNameSubmit);
+    }
+    public Info changeUserName(String name){
+        inputUserName(name);
+        submitUserName();
+        return this;
+    }
+    public boolean isEnabledSubmit(){
+        By item=By.xpath(InfoSelector.SUBMIT_USER_NAME);
+        return isEnabled(item);
     }
 }

@@ -1,7 +1,5 @@
 package eventExpress.selectorData;
 
-import eventExpress.enums.PersonalInfo;
-
 public class InfoSelector {
     private static final String beginPart ="/html/body/div[1]/div[3]/div/";
     private static final String TEXT="/div[1]/div[1]/p";
@@ -11,6 +9,9 @@ public class InfoSelector {
     public static final String USER_NAME_TEXT= beginPart+"div[2]"+TEXT;
     public static final String USER_NAME= beginPart +"div[2]/div[1]/div[1]/p[2]";
     public static final String USER_NAME_BUTTON=beginPart+"div[2]"+BUTTON;
+    public static final String INPUT_USER_NAME=beginPart+"div[2]/div[2]/div/div/div/div/p/form/div[1]/div/div/input";
+    public static final String SUBMIT_USER_NAME=beginPart+"div[2]/div[2]/div/div/div/div/p/form/div[2]/button[1]";
+    public static final String CLEAR_USER_NAME=beginPart+"div[2]/div[2]/div/div/div/div/p/form/div[2]/button[2]";
     public static final String GENDER_TEXT= beginPart+"div[3]"+TEXT;
     public static final String GENDER_NAME= beginPart +"div[3]/div[1]/div[1]/p[2]";
     public static final String GENDER_BUTTON= beginPart+"div[3]"+BUTTON;
