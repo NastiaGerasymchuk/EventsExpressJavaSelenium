@@ -1,7 +1,8 @@
 package eventExpress.pages;
 
 import eventExpress.models.PersonalInfoTextTitle;
-import eventExpress.models.User;
+import eventExpress.selectorData.InfoSelector;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 public class PersonalInfo extends BasePage{
@@ -14,25 +15,90 @@ public class PersonalInfo extends BasePage{
         this.info=info;
     }
     private Info info;
-    public boolean isVisibleInfo(){
-      return info.isVisibleInfo();
+    public boolean isVisibleChangeAvatarText(){
+        return info.isVisibleChangeAvatarText();
     }
-    public boolean isEnabledButtonsInfo(){
-        return info.isEnabledButtons();
+    public boolean isVisibleChangeAvatarButton(){
+        return info.isVisibleChangeAvatarButton();
+    }
+    public boolean isVisibleUserNameText(){
+        return info.isVisibleUserNameText();
+    }
+    public boolean isVisibleUserName(){
+        return info.isVisibleUserName();
+    }
+    public boolean isVisibleUserNameButton(){
+        return info.isVisibleUserNameButton();
+    }
+    public boolean isVisibleGenderText(){
+        return info.isVisibleGenderText();
+    }
+    public boolean isVisibleGenderName(){
+        return info.isVisibleGenderName();
+    }
+    public boolean isVisibleGenderButton(){
+        return info.isVisibleGenderButton();
+    }
+    public boolean isVisibleDateOfBirthText(){
+        return info.isVisibleDateOfBirthText();
+    }
+    public boolean isVisibleDateOfBirthName(){
+        return info.isVisibleDateOfBirthName();
+    }
+    public boolean isVisibleDateOfBirthButton(){
+        return info.isVisibleDateOfBirthButton();
+    }
+    public boolean isVisibleFavouriteCategoriesButton(){
+        By item=By.xpath(InfoSelector.FAVOURITE_CATEGORIES_BUTTON);
+        return isVisible(item);
     }
 
-    public boolean isCurrentTitles(PersonalInfoTextTitle personalInfoTextTitle){
-        return info.isCurrentTitles(personalInfoTextTitle);
+    public boolean isVisibleManageNotificationText(){
+        return info.isVisibleManageNotificationText();
     }
-    public boolean isCurrentUser(User user){
-        return info.isCurrentUser(user);
+    public boolean isVisibleManageNotificationButton(){
+        return info.isVisibleManageNotificationButton();
     }
-    public boolean isCurrentName(String name){
-       return info.isCurrentName(name);
+
+    public boolean isVisibleLinkedAccountsText(){
+        return info.isVisibleLinkedAccountsText();
+    }
+    public boolean isVisibleLinkedAccountsButton(){
+        return info.isVisibleLinkedAccountsButton();
+    }
+    public PersonalInfoTextTitle getCurrentTitles(){
+        return info.getCurrentTitles();
+    }
+    public String getUserBirth(){
+        return info.getDateOfBirthText();
     }
     public boolean isEnabledUserNameSubmit(){
         return info.isEnabledSubmit();
     }
+    public boolean isEnabledUserNameButton(){
+        return isEnabledUserNameButton();
+    }
+    public boolean isEnabledManageNotificationButton(){
+        return info.isEnabledManageNotificationButton();
+    }
+    public boolean isEnabledChangeAvatarButton(){
+        return info.isEnabledChangeAvatarButton();
+    }
+    public boolean isEnabledGenderButton(){
+       return info.isEnabledGenderButton();
+    }
+    public boolean isEnabledDateOfBirthButton(){
+        return info.isEnabledDateOfBirthButton();
+    }
+    public boolean isEnabledFavouriteCategoriesButton(){
+        By item=By.xpath(InfoSelector.FAVOURITE_CATEGORIES_BUTTON);
+        return isEnabled(item);
+    }
+
+    public boolean isEnabledLinkedAccountsButton(){
+       return isEnabledLinkedAccountsButton();
+    }
+
     public PersonalInfo changeUserName(String name){
        info.changeUserName(name);
        return this;
@@ -40,5 +106,8 @@ public class PersonalInfo extends BasePage{
     public PersonalInfo goToUserName(){
         info.clickUserNameButton();
         return this;
+    }
+    public String getUserName(){
+        return info.getUserName();
     }
 }

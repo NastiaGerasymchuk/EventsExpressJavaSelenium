@@ -29,59 +29,45 @@ public class HeaderProfile extends BasePage {
         click(personalInfoButton);
         return new PersonalInfo(driver);
     }
-    private boolean isPhotoVisible(){
+    public boolean isPhotoVisible(){
         By item=By.cssSelector(HeaderProfileSelector.PHOTO);
         return  isVisible(item);
     }
-    private boolean isNameVisible(){
+    public boolean isNameVisible(){
         By item=By.cssSelector(HeaderProfileSelector.USER_NAME);
         return  isVisible(item);
     }
-    private boolean isPersonalInfoVisible(){
+    public boolean isPersonalInfoVisible(){
         By item=By.cssSelector(HeaderProfileSelector.PERSONAL_INFO_BUTTON);
         return  isVisible(item);
     }
-    private boolean isNotificationVisible(){
+    public boolean isNotificationVisible(){
         By item=By.cssSelector(HeaderProfileSelector.NOTIFICATION_BUTTON);
         return  isVisible(item);
     }
-    private boolean isLogOutVisible(){
+    public boolean isLogOutVisible(){
         By item=By.cssSelector(HeaderProfileSelector.LOG_OUT_BUTTON);
         return  isVisible(item);
     }
-    private boolean isAddEventVisible(){
+    public boolean isAddEventVisible(){
         By item=By.cssSelector(HeaderProfileSelector.ADD_EVENT_BUTTON);
         return  isVisible(item);
     }
-    private boolean isEnabledPersonalInfoButton(){
+    public boolean isEnabledPersonalInfoButton(){
         By item=By.cssSelector(HeaderProfileSelector.PERSONAL_INFO_BUTTON);
         return isEnabled(item);
     }
-    private boolean isEnabledNotificationButton(){
+    public boolean isEnabledNotificationButton(){
         By item=By.cssSelector(HeaderProfileSelector.NOTIFICATION_BUTTON);
         return isEnabled(item);
     }
-    private boolean isEnabledLogOutButton(){
+    public boolean isEnabledLogOutButton(){
         By item=By.cssSelector(HeaderProfileSelector.LOG_OUT_BUTTON);
         return isEnabled(item);
     }
-    private boolean isEnabledAddEventButton(){
+    public boolean isEnabledAddEventButton(){
         By item=By.cssSelector(HeaderProfileSelector.ADD_EVENT_BUTTON);
         return isEnabled(item);
-    }
-    public boolean isBeginVisible(){
-        return isPhotoVisible()&&
-                isNameVisible()&&
-                isPersonalInfoVisible()&&
-                isNotificationVisible()&&
-                isLogOutVisible()&&
-                isAddEventVisible();
-    }
-    public boolean isBeginEnabled(){
-        return isEnabledPersonalInfoButton()&&
-                isEnabledNotificationButton()&&
-                isEnabledLogOutButton()&&
-                isEnabledAddEventButton();
     }
 
 }

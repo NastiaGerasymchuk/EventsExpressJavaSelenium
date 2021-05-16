@@ -26,10 +26,11 @@ public class HomePage extends BasePage {
     public LoginForm signInClick(){
        return leftNav.signInClick();
     }
-    public boolean isCurrentNav(List<String> items){
-        return leftNav.isCurrentMenu(items);
-    }
+
     public boolean isSignInButton(){
         return leftNav.isSignInButton();
+    }
+    public String getSignInText(){
+        return leftNav.getSignInButtonText();
     }
 }

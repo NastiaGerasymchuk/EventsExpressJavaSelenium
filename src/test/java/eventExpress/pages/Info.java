@@ -1,8 +1,6 @@
 package eventExpress.pages;
 
-import eventExpress.enums.Gender;
 import eventExpress.models.PersonalInfoTextTitle;
-import eventExpress.models.User;
 import eventExpress.selectorData.InfoSelector;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -195,35 +193,6 @@ public class Info extends BasePage{
         return isEnabled(item);
     }
 
-    public boolean isVisibleInfo(){
-        return isVisibleChangeAvatarButton()&&
-                isVisibleChangeAvatarText()&&
-                isVisibleUserNameText()&&
-                isVisibleUserName()&&
-                isVisibleUserNameButton()&&
-                isVisibleGenderText()&&
-                isVisibleGenderName()&&
-                isVisibleGenderButton()&&
-                isVisibleDateOfBirthText()&&
-                isVisibleDateOfBirthName()&&
-                isVisibleDateOfBirthButton()&&
-                isVisibleFavouriteCategoriesText()&&
-                isVisibleFavouriteCategoriesButton()&&
-                isVisibleManageNotificationText()&&
-                isVisibleManageNotificationButton()&&
-                isVisibleLinkedAccountsText()&&
-                isVisibleLinkedAccountsButton();
-
-    }
-    public boolean isEnabledButtons(){
-        return isEnabledChangeAvatarButton()&&
-                isEnabledUserNameButton()&&
-                isEnabledGenderButton()&&
-                isEnabledDateOfBirthButton()&&
-                isEnabledFavouriteCategoriesButton()&&
-                isEnabledManageNotificationButton()&&
-                isEnabledLinkedAccountsButton();
-    }
     public List<String> getCategories(){
         By items=By.cssSelector(InfoSelector.FAVOURITE_CATEGORIES_ITEMS);
         return getValuesGroupText(items);
@@ -232,17 +201,9 @@ public class Info extends BasePage{
         By items=By.cssSelector(InfoSelector.MANAGE_NOTIFICATIONS_ITEMS);
         return getValuesGroupText(items);
     }
-    public boolean isGender(Gender gender){
-       return isEnumElements(getGenderName())&&gender==getEnumElements(getGenderName());
-    }
-    public boolean isCurrentUser(User user){
-        return isEqualElements(user.getName(),getUserName())&&
-                isGender(user.getGender())&&
-                isEqualElements(user.getBirthday(),getDateOfBirthName())&&
-               equalsIgnoreCase(user.getCategories(),getCategories())&&
-               equalsIgnoreCase(user.getManageNotifications(),getManageNotifications());
-    }
-    public boolean isCurrentTitles(PersonalInfoTextTitle personalInfoTextTitle){
+
+
+    public PersonalInfoTextTitle getCurrentTitles(){
             String avatar=getChangeAvatarText();
             String userName=getUserNameText();
             String gender=getGenderText();
@@ -253,7 +214,8 @@ public class Info extends BasePage{
             PersonalInfoTextTitle existedTitles=new PersonalInfoTextTitle(
                     avatar,userName,gender,dateOfBirth,favouriteCategories,manageNotification,linkedAccounts
             );
-            return personalInfoTextTitle.equals(existedTitles);
+            return existedTitles;
+
     }
 
     private void inputUserName(String name){

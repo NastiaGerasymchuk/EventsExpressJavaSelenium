@@ -35,17 +35,46 @@ public class LoginForm extends BasePage{
     public LoginForm(WebDriver driver){
         super(driver);
     }
-    public boolean isPresentElements(){
-        return isVisible(By.cssSelector((LoginSelector.LOGIN_BUTTON)))&&
-                isVisible(By.cssSelector((LoginSelector.REGISTER_BUTTON)))&&
-                isVisible(By.cssSelector((LoginSelector.EMAIL_INPUT)))&&
-                isVisible(By.cssSelector((LoginSelector.PASSWORD_INPUT)))&&
-                isVisible(By.cssSelector((LoginSelector.CLEAR_BUTTON)))&&
-                isVisible(By.cssSelector((LoginSelector.SIGN_IN_BUTTON)))&&
-                isVisible(By.cssSelector((LoginSelector.FACEBOOK_BUTTON)))&&
-                isVisible(By.cssSelector((LoginSelector.GOOGLE_BUTTON)))&&
-                isVisible(By.cssSelector((LoginSelector.FORGOT_PASSWORD_BUTTON)))&&
-                isVisible(By.cssSelector((LoginSelector.CANCEL_BUTTON)));
+
+    public boolean isVisibleLoginButton(){
+        By item=By.cssSelector(LoginSelector.LOGIN_BUTTON);
+        return isVisible(item);
+    }
+    public boolean isVisibleRegisterButton(){
+        By item=By.cssSelector(LoginSelector.REGISTER_BUTTON);
+        return isVisible(item);
+    }
+    public boolean isVisibleEmailInput(){
+        By item=By.cssSelector(LoginSelector.EMAIL_INPUT);
+        return isVisible(item);
+    }
+    public boolean isVisiblePasswordInput(){
+        By item=By.cssSelector(LoginSelector.PASSWORD_INPUT);
+        return isVisible(item);
+    }
+    public boolean isVisibleClearButton(){
+        By item=By.cssSelector(LoginSelector.CLEAR_BUTTON);
+        return isVisible(item);
+    }
+    public boolean isVisibleSignInButton(){
+        By item=By.cssSelector(LoginSelector.SIGN_IN_BUTTON);
+        return isVisible(item);
+    }
+    public boolean isVisibleFacebookButton(){
+        By item=By.cssSelector(LoginSelector.FACEBOOK_BUTTON);
+        return isVisible(item);
+    }
+    public boolean isVisibleGoogleButton(){
+        By item=By.cssSelector(LoginSelector.GOOGLE_BUTTON);
+        return isVisible(item);
+    }
+    public boolean isVisibleForgotPasswordButton(){
+        By item=By.cssSelector(LoginSelector.FORGOT_PASSWORD_BUTTON);
+        return isVisible(item);
+    }
+    public boolean isVisibleCancelButton(){
+        By item=By.cssSelector(LoginSelector.CANCEL_BUTTON);
+        return isVisible(item);
     }
     protected String getLoginBtnText(){
         return getText(loginButton);
@@ -96,64 +125,48 @@ public class LoginForm extends BasePage{
        };
     }
 
-    public boolean isCurrentText(List<String> listTextElements){
-        List<String> currentList=getElementsText();
-        return equalsIgnoreCase(currentList,listTextElements);
-    }
-    private boolean isEnabledLoginBtn(){
+
+    public boolean isEnabledLoginBtn(){
         By item=By.cssSelector(LoginSelector.LOGIN_BUTTON);
         return isEnabled(item);
     }
-    private boolean isEnabledRegisterBtn(){
+    public boolean isEnabledRegisterBtn(){
         By item=By.cssSelector(LoginSelector.REGISTER_BUTTON);
         return isEnabled(item);
     }
-    private boolean isEnabledEmailInput(){
+    public boolean isEnabledEmailInput(){
         By item=By.cssSelector(LoginSelector.EMAIL_INPUT);
         return isEnabled(item);
     }
-    private boolean isEnabledPasswordInput(){
+    public boolean isEnabledPasswordInput(){
         By item=By.cssSelector(LoginSelector.PASSWORD_INPUT);
         return isEnabled(item);
     }
-    private boolean isEnabledClearButton(){
+    public boolean isEnabledClearButton(){
         By item=By.cssSelector(LoginSelector.CLEAR_BUTTON);
         return isEnabled(item);
     }
-    private boolean isEnabledSingInButton(){
+    public boolean isEnabledSingInButton(){
         By item=By.cssSelector(LoginSelector.SIGN_IN_BUTTON);
         return isEnabled(item);
     }
-    private boolean isEnabledFacebookButton(){
+    public boolean isEnabledFacebookButton(){
         By item=By.cssSelector(LoginSelector.FACEBOOK_BUTTON);
         return isEnabled(item);
     }
-    private boolean isEnabledGoogleButton(){
+    public boolean isEnabledGoogleButton(){
         By item=By.cssSelector(LoginSelector.GOOGLE_BUTTON);
         return isEnabled(item);
     }
-    private boolean isEnabledForgotPasswordButton(){
+    public boolean isEnabledForgotPasswordButton(){
         By item=By.cssSelector(LoginSelector.FORGOT_PASSWORD_BUTTON);
         return isEnabled(item);
     }
-    private boolean isEnabledCancelButton(){
+    public boolean isEnabledCancelButton(){
         By item=By.cssSelector(LoginSelector.CANCEL_BUTTON);
         return isEnabled(item);
     }
-    public boolean isBeginEnabled(){
-        return isEnabledLoginBtn()&&
-                isEnabledRegisterBtn()&&
-                isEnabledEmailInput()&&
-                isEnabledPasswordInput()&&
-                !isEnabledClearButton()&&
-                isEnabledSingInButton()&&
-                isEnabledLoginBtn()&&
-                isEnabledFacebookButton()&&
-                isEnabledGoogleButton()&&
-                isEnabledForgotPasswordButton()&&
-                isEnabledCancelButton();
 
-    }
     public UserPage login(User user){
         String email=user.getEmail();
         String password=user.getPassword();

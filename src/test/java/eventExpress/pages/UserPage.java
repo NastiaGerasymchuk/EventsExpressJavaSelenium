@@ -23,12 +23,38 @@ public class UserPage extends BasePage{
     public PersonalInfo goToPersonalInfo(){
         return headerProfile.personalInfoButtonClick();
     }
-    public boolean isCurrentNav(List<String> items){
-        return leftNav.isCurrentMenu(items);
-    }
-    public boolean isHeaderProfileExist(){
-        return headerProfile.isBeginEnabled()&&
-                headerProfile.isBeginVisible();
-    }
 
+    public boolean isPhotoVisible(){
+        return headerProfile.isPhotoVisible();
+    }
+    public boolean isNameVisible(){
+        return  headerProfile.isNameVisible();
+    }
+    public boolean isPersonalInfoVisible(){
+        return  headerProfile.isPersonalInfoVisible();
+    }
+    public boolean isNotificationVisible(){
+        return  headerProfile.isNotificationVisible();
+    }
+    public boolean isLogOutVisible(){
+        return  headerProfile.isLogOutVisible();
+    }
+    public boolean isAddEventVisible(){
+        return  headerProfile.isAddEventVisible();
+    }
+    public boolean isEnabledPersonalInfoButton(){
+        return  headerProfile.isEnabledPersonalInfoButton();
+    }
+    public boolean isEnabledNotificationButton(){
+        return  headerProfile.isEnabledNotificationButton();
+    }
+    public boolean isEnabledLogOutButton(){
+       return headerProfile.isEnabledLogOutButton();
+    }
+    public boolean isEnabledAddEventButton(){
+       return headerProfile.isEnabledAddEventButton();
+    }
+    public List<String> getNavItems(){
+        return leftNav.getNavItems();
+    }
 }

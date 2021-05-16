@@ -2,18 +2,19 @@ package eventExpress.tests;
 import eventExpress.pages.HomePage;
 import eventExpress.pages.LoginForm;
 import eventExpress.selectorData.LoginSelector;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Stream;
 
-import static org.hamcrest.MatcherAssert.*;
-import static org.hamcrest.Matchers.*;
+import static org.hamcrest.CoreMatchers.instanceOf;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
+import static org.junit.jupiter.api.Assertions.assertAll;
+import static utils.EqualsSanitilize.equalsSanitilize;
 
 public class LoginTest extends BaseTest {
     public LoginTest(){
@@ -45,10 +46,35 @@ public class LoginTest extends BaseTest {
     @MethodSource("loginTextData")
     public void isPresentLoginForm(List<String> items){
         HomePage homePage=new HomePage(driver);
-        LoginForm loginForm=homePage.signInClick();
-        assertThat(loginForm.isPresentElements(),is(true));
-        assertThat(loginForm.isCurrentText(items),is(true));
-        assertThat(loginForm.isBeginEnabled(),is(true));
+        var loginForm=homePage.signInClick();
+        assertThat(loginForm, instanceOf(LoginForm.class));
+        assertAll("enabled buttons",
+                ()->assertThat("login",loginForm.isEnabledLoginBtn(),is(true)),
+                ()->assertThat("register",loginForm.isEnabledRegisterBtn(),is(true)),
+                ()->assertThat("clear",loginForm.isEnabledClearButton(),is(false)),
+                ()->assertThat("sign in",loginForm.isEnabledSingInButton(),is(true)),
+                ()->assertThat("facebook",loginForm.isEnabledFacebookButton(),is(true)),
+                ()->assertThat("google",loginForm.isEnabledGoogleButton(),is(true)),
+                ()->assertThat("password",loginForm.isEnabledForgotPasswordButton(),is(true)),
+                ()->assertThat("cancel",loginForm.isEnabledCancelButton(),is(true))
+                );
+        assertAll("enabled fields",
+                ()->assertThat("email",loginForm.isEnabledEmailInput(),is(true)),
+                ()->assertThat("password",loginForm.isEnabledPasswordInput(),is(true))
+        );
+        assertAll("visible",
+                ()->assertThat("email",loginForm.isVisibleLoginButton(),is(true)),
+                ()->assertThat("password",loginForm.isVisibleRegisterButton(),is(true)),
+                ()->assertThat("password",loginForm.isVisibleEmailInput(),is(true)),
+                ()->assertThat("password",loginForm.isVisiblePasswordInput(),is(true)),
+                ()->assertThat("password",loginForm.isVisibleClearButton(),is(true)),
+                ()->assertThat("password",loginForm.isVisibleSignInButton(),is(true)),
+                ()->assertThat("password",loginForm.isVisibleFacebookButton(),is(true)),
+                ()->assertThat("password",loginForm.isVisibleGoogleButton(),is(true)),
+                ()->assertThat("password",loginForm.isVisibleForgotPasswordButton(),is(true)),
+                ()->assertThat("password",loginForm.isVisibleCancelButton(),is(true))
+        );
+        List<String> loginElements=loginForm.getElementsText();
+        assertThat("text is correct on login elements",items, equalsSanitilize(loginElements));
     }
-
 }

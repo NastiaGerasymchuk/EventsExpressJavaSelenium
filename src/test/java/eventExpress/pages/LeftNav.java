@@ -13,7 +13,7 @@ public class LeftNav extends BasePage{
     @FindBy(css = LeftNavSelector.LIST_ITEMS)
     WebElement listItems;
     @FindBy(css = LeftNavSelector.NAVIGATION)
-    WebElement navigation;
+    WebElement navigationPanel;
     @FindBy(css = LeftNavSelector.SIGN_IN_BUTTON)
     WebElement signInButton;
     public LeftNav(WebDriver driver){
@@ -38,13 +38,8 @@ public class LeftNav extends BasePage{
         click(signInButton);
         return new LoginForm(driver);
     }
-    public boolean isCurrentMenu(List<String> items ){
-            List<String> assertList=getNavItems();
-        return  equalsIgnoreCase(assertList,items);
-        //return ((assertList.size() == expectedList.size()) && assertList.containsAll((expectedList)) && expectedList.containsAll(assertList));
 
-    }
-    public boolean isCurrentButton(String button,String current){
+    protected boolean isCurrentButton(String button,String current){
         return isEqualElements(button,current);
     }
     public boolean isSignInButton() {
